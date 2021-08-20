@@ -12,7 +12,7 @@ Requirements on a typical Ubuntu machine:
 
 1. Install the following base dependency packages: "apt install software-properties-common python-setuptools screen curl ant expect-dev python-dev python-pip protobuf-compiler pkg-config libunwind-dev libssl-dev libprotobuf-dev libevent-dev libgtest-dev g++ cmake libboost-all-dev libevent-dev libdouble-conversion-dev libgoogle-glog-dev libgflags-dev libiberty-dev liblz4-dev liblzma-dev libsnappy-dev make zlib1g-dev binutils-dev libjemalloc-dev libssl-dev pkg-config libunwind-dev libunwind8-dev libelf-dev libdwarf-dev libdouble-conversion-dev libfarmhash-dev libre2-dev libgif-dev libpng-dev libsqlite3-dev libsnappy-dev liblmdb-dev libiberty-dev"
 
-2. We use folly, a concurrent data-structure library. To install, run the following: pushd . ; cd /tmp; git clone https://github.com/facebook/folly.git; cd folly; git checkout 49926b98f5afb5667d0c06807da79d606a6d43c3; git clone https://github.com/fmtlib/fmt.git; cd fmt; mkdir \_build; cd \_build; cmake ..; make -j10; sudo make install; cd /tmp/folly; mkdir \_build; cd \_build; cmake ..; make -j10; sudo make install; popd . ;
+2. We use folly, a concurrent data-structure library. To install, run the following: pushd . ; cd /tmp; git clone https://github.com/facebook/folly.git; cd folly; git checkout 49926b98f5afb5667d0c06807da79d606a6d43c3; git clone https://github.com/fmtlib/fmt.git; cd fmt; mkdir \_build; cd \_build; cmake ..; make -j10; sudo make install; cd /tmp/folly; mkdir \_build; cd \_build; cmake ..; make -j10; sudo make install; popd;
 
 ## 2. Building and Running
 
