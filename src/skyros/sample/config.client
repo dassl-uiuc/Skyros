@@ -1,0 +1,4 @@
+f 1
+replica localhost:14000
+replica localhost:14001
+replica localhost:14002

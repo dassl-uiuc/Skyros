@@ -1,0 +1,13 @@
+*.eps
+*.vr.orig.*
+*.vr.rtop.*
+*.vr.curp.*
+a_*
+b_*
+*.pyc
+orig
+rtop
+curp
+orig_*
+rtop_*
+curp_*

@@ -1,0 +1,41 @@
+Information about how to reproduce the graphs in the paper:
+
+Fig-8a
+------
+
+workload-name:  
+Directory name: micro-nilext-only
+How to reproduce: ./run.sh 
+
+
+Fig-8b(i)
+---------
+
+workload-name: 
+Directory name: micro-nilext-nonnilext
+How to reproduce: ./run.sh 
+
+Fig-8b(ii)
+---------
+
+workload-name: 
+Directory name: micro-nilext-reads
+How to reproduce: ./run.sh 
+
+
+Fig-8b(iii)
+------------
+
+workload-name: m
+Directory name: micro-mixed-all
+How to reproduce: ./run.sh 
+
+
+Fig-8c
+------
+
+workload-name: r
+Directory name: micro-read-latest
+How to reproduce: ./run.sh 
+
+

@@ -1,0 +1,8 @@
+*.eps
+*.vr.orig.*
+*.vr.rtop.*
+a_*
+b_*
+*.pyc
+orig
+rtop

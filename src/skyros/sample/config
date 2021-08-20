@@ -1,0 +1,4 @@
+f 1
+replica localhost:13000
+replica localhost:13001
+replica localhost:13002
