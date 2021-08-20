@@ -34,7 +34,7 @@ PEM_DIR = '../../pems'
 
 machines = []
 
-repo_base = '/mnt/base/nilext'
+repo_base = '/mnt/base/skyros'
 desired_branch = 'master'
 
 def run_remote(machine_ip, command):

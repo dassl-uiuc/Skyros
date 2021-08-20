@@ -20,7 +20,7 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-results_home=/mnt/base/nilext/experiments/results_repro
+results_home=/mnt/base/skyros/experiments/results_repro
 pem='./pems/us-east-1.pem'
 user=ubuntu
 client=$(tail -n 1 ./external_ips) 
