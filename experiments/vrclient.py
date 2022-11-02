@@ -32,7 +32,7 @@ import time
 #fourth is num operations
 
 def invoke_remote_cmd(machine_ip, pdir, command):
-	cmd = 'ssh -i {0}/{1}.pem {2}@{3} \'{4}\''.format(pdir, "us-east-1", "ubuntu", machine_ip, command)
+	cmd = 'ssh {0}@{1} \'{2}\''.format("sarthakm", machine_ip, command)
 	# print (cmd)
 	p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	out, err = p.communicate()

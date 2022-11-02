@@ -26,7 +26,7 @@ import subprocess
 import argparse
 from vr import vr
 
-AWS_UBUNTU_USER = 'ubuntu'
+AWS_UBUNTU_USER = 'sarthakm'
 AWS_REGION = 'us-east-1'
 CURR_DIR = os.path.dirname(os.path.abspath(__file__))
 PEM_DIR = CURR_DIR + '/pems'
@@ -38,7 +38,7 @@ def target_factory(target_system_name, num_nodes):
 		assert False
 
 def invoke_remote_cmd(machine_ip, user, command):
-	cmd = 'ssh -i {0}/{1}.pem {2}@{3} \'{4}\''.format(PEM_DIR, AWS_REGION, AWS_UBUNTU_USER, machine_ip, command)
+	cmd = 'ssh {0}@{1} \'{2}\''.format(AWS_UBUNTU_USER, machine_ip, command)
 	p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	out, err = p.communicate()
 	if err is not None and len(err) > 0:
@@ -46,15 +46,15 @@ def invoke_remote_cmd(machine_ip, user, command):
 	return (out, err)
 
 def run_remote(machine_ip, user, command):
-	cmd = 'ssh -i {0}/{1}.pem {2}@{3} \'{4}\''.format(PEM_DIR, AWS_REGION, AWS_UBUNTU_USER, machine_ip, command)
-	os.system(cmd)
+    cmd = 'ssh {0}@{1} \'{2}\''.format(AWS_UBUNTU_USER, machine_ip, command)
+    os.system(cmd)
 
 def copy_file_remote(machine_ip, user, from_file_path, to_file_path):
-	cmd = 'scp -i {0}/{1}.pem {2} {3}@{4}:{5}'.format(PEM_DIR, AWS_REGION, from_file_path, AWS_UBUNTU_USER, machine_ip, to_file_path)
+	cmd = 'scp {0} {1}@{2}:{3}'.format(from_file_path, AWS_UBUNTU_USER, machine_ip, to_file_path)
 	os.system(cmd)
 
 def copy_file_from_remote(machine_ip, user, from_file_path, to_file_path):
-	cmd = 'scp -i {0}/{1}.pem {3}@{4}:{5} {2}'.format(PEM_DIR, AWS_REGION, to_file_path, AWS_UBUNTU_USER, machine_ip, from_file_path)
+	cmd = 'scp {0}@{1}:{2} {3}'.format(AWS_UBUNTU_USER, machine_ip, from_file_path, to_file_path)
 	os.system(cmd)
 
 def check_context_sanity(context):
@@ -67,7 +67,7 @@ def check_context_sanity(context):
 	assert context.cluster in ['us-east-1']
 	assert context.sync in ['yes', 'no']
 	assert context.leader_reads in ['yes', 'no']
-	assert context.user in ['ubuntu']
+	assert context.user in ['ubuntu', 'sarthakm']
 	assert context.workload in ['t', 'w', 'a', 'b', 'c', 'd', 'f', 'm', 'e', 'n', 'r', 'fs', 'fsar', 'nilz', 'nilu', 'compat', 'compatconflict', 'nc']
 	if context.code == 'orig' and context.sync == 'yes':
 		assert context.leader_reads == 'yes'
@@ -195,7 +195,8 @@ if __name__ == '__main__':
 	local_dc = True
 	context = parser.parse_args()
 	check_context_sanity(context)
-	
+
+        print("ok till now")
 
 	# initialize target_system object
 	target_system = target_factory(context.target_system_name, context.num_nodes)
