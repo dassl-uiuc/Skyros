@@ -38,11 +38,11 @@ repo_base = '/users/sarthakm/Skyros'
 desired_branch = 'master'
 
 def run_remote(machine_ip, command):
-	cmd = 'ssh {0}@{1} \'{2}\''.format(AWS_UBUNTU_USER, machine_ip, command)
+	cmd = 'ssh {0}@{1} \'sh -c \"{2}\" &\''.format(AWS_UBUNTU_USER, machine_ip, command)
 	os.system(cmd)
 
 def invoke_remote_cmd(machine_ip, command):
-	cmd = 'ssh {0}@{1} \'{2}\''.format(AWS_UBUNTU_USER, machine_ip, command)
+	cmd = 'ssh {0}@{1} \'sh -c \"{2}\" \''.format(AWS_UBUNTU_USER, machine_ip, command)
 	p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	out, err = p.communicate()
 	if err is not None and len(err) > 0:

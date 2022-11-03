@@ -32,7 +32,7 @@ import time
 #fourth is num operations
 
 def invoke_remote_cmd(machine_ip, pdir, command):
-	cmd = 'ssh {0}@{1} \'{2}\''.format("sarthakm", machine_ip, command)
+	cmd = 'ssh {0}@{1} \'sh -c \"{2}\" &\''.format("sarthakm", machine_ip, command)
 	# print (cmd)
 	p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	out, err = p.communicate()
@@ -83,6 +83,8 @@ else:
 		if code == 'rtop' or code == 'rtopcomm':
 			os.system('{0} -c {1} -s {5} -m vr -n {2} -k {3} > /tmp/load.log.{4} 2>&1 &'.format(client_binary_path, config_file_path, 125000, workload_trace_dir + load_file_prefix + str(i), str(i), consensus_config))
 		elif code == 'orig':
+			cmd = '{0} -c {1} -m vr -n {2} -k {3} > /tmp/load.log.{4} 2>&1 &'.format(client_binary_path, config_file_path, 125000, workload_trace_dir + load_file_prefix + str(i), str(i))
+			print (cmd)
 			os.system('{0} -c {1} -m vr -n {2} -k {3} > /tmp/load.log.{4} 2>&1 &'.format(client_binary_path, config_file_path, 125000, workload_trace_dir + load_file_prefix + str(i), str(i)))
 		elif code == 'curp':
 			os.system('{0} -c {1} -m vr -n {2} -k {3} > /tmp/load.log.{4} 2>&1 &'.format(client_binary_path, config_file_path, 125000, workload_trace_dir + load_file_prefix + str(i), str(i)))

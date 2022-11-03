@@ -38,7 +38,7 @@ def target_factory(target_system_name, num_nodes):
 		assert False
 
 def invoke_remote_cmd(machine_ip, user, command):
-	cmd = 'ssh {0}@{1} \'{2}\''.format(AWS_UBUNTU_USER, machine_ip, command)
+	cmd = 'ssh {0}@{1} \'sh -c \"{2}\" &\''.format(AWS_UBUNTU_USER, machine_ip, command)
 	p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	out, err = p.communicate()
 	if err is not None and len(err) > 0:
@@ -46,8 +46,9 @@ def invoke_remote_cmd(machine_ip, user, command):
 	return (out, err)
 
 def run_remote(machine_ip, user, command):
-    cmd = 'ssh {0}@{1} \'{2}\''.format(AWS_UBUNTU_USER, machine_ip, command)
-    os.system(cmd)
+  cmd = 'ssh {0}@{1} \'sh -c \"{2}\" &\''.format(AWS_UBUNTU_USER, machine_ip, command)
+  print (cmd)
+  os.system(cmd)
 
 def copy_file_remote(machine_ip, user, from_file_path, to_file_path):
 	cmd = 'scp {0} {1}@{2}:{3}'.format(from_file_path, AWS_UBUNTU_USER, machine_ip, to_file_path)
@@ -195,8 +196,6 @@ if __name__ == '__main__':
 	local_dc = True
 	context = parser.parse_args()
 	check_context_sanity(context)
-
-        print("ok till now")
 
 	# initialize target_system object
 	target_system = target_factory(context.target_system_name, context.num_nodes)
