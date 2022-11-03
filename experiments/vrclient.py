@@ -65,7 +65,7 @@ windowfrac = sys.argv[10]
 if code == 'rtop' or code == 'curpopt' or code == 'rtopcomm':
 	consensus_config = sys.argv[11]
 
-workload_trace_dir = '/mnt/data/'
+workload_trace_dir = '/mydata/mnt/data/'
 
 
 if workload == 'w' or workload == 'e' or workload == 'fs' or workload == 'fsar' or workload == 'compat' or workload == 'nc':
@@ -81,13 +81,13 @@ else:
 	for i in range(1, 9):
 		#we don't want the load output when we download the results, so redirecting to dev null
 		if code == 'rtop' or code == 'rtopcomm':
-			os.system('{0} -c {1} -s {5} -m vr -n {2} -k {3} > /tmp/load.log.{4} 2>&1 &'.format(client_binary_path, config_file_path, 125000, workload_trace_dir + load_file_prefix + str(i), str(i), consensus_config))
+			os.system('{0} -c {1} -s {5} -m vr -n {2} -k {3} > /mydata/tmp/load.log.{4} 2>&1 &'.format(client_binary_path, config_file_path, 125000, workload_trace_dir + load_file_prefix + str(i), str(i), consensus_config))
 		elif code == 'orig':
-			cmd = '{0} -c {1} -m vr -n {2} -k {3} > /tmp/load.log.{4} 2>&1 &'.format(client_binary_path, config_file_path, 125000, workload_trace_dir + load_file_prefix + str(i), str(i))
+			cmd = '{0} -c {1} -m vr -n {2} -k {3} > /mydata/tmp/load.log.{4} 2>&1 &'.format(client_binary_path, config_file_path, 125000, workload_trace_dir + load_file_prefix + str(i), str(i))
 			print (cmd)
-			os.system('{0} -c {1} -m vr -n {2} -k {3} > /tmp/load.log.{4} 2>&1 &'.format(client_binary_path, config_file_path, 125000, workload_trace_dir + load_file_prefix + str(i), str(i)))
+			os.system('{0} -c {1} -m vr -n {2} -k {3} > /mydata/tmp/load.log.{4} 2>&1 &'.format(client_binary_path, config_file_path, 125000, workload_trace_dir + load_file_prefix + str(i), str(i)))
 		elif code == 'curp':
-			os.system('{0} -c {1} -m vr -n {2} -k {3} > /tmp/load.log.{4} 2>&1 &'.format(client_binary_path, config_file_path, 125000, workload_trace_dir + load_file_prefix + str(i), str(i)))
+			os.system('{0} -c {1} -m vr -n {2} -k {3} > /mydata/tmp/load.log.{4} 2>&1 &'.format(client_binary_path, config_file_path, 125000, workload_trace_dir + load_file_prefix + str(i), str(i)))
 		else:
 			assert False
 
@@ -111,7 +111,7 @@ else:
 		times_checked = 0
 		out = 'something'
 		while '1000000' not in out:
-			out, err = invoke_remote_cmd(ip, perf_dir + "/pems", "cat /tmp/vrlog* | grep -i lastcommitted")
+			out, err = invoke_remote_cmd(ip, perf_dir + "/pems", "cat /mydata/tmp/vrlog* | grep -i lastcommitted")
 			out = out.decode(sys.stdout.encoding)
 			time.sleep(2)
 			times_checked += 1
@@ -135,7 +135,7 @@ else:
 
 os.system("rm -rf {0}/lat.*; rm -rf {0}/latencies.*".format(perf_dir))
 if workload == 'r':
-	os.system('{0}/reqserver/server {1} {2} > /tmp/serverlog 2>&1  &'.format(perf_dir, str(readwindow), str(windowfrac)))
+	os.system('{0}/reqserver/server {1} {2} > /mydata/tmp/serverlog 2>&1  &'.format(perf_dir, str(readwindow), str(windowfrac)))
 	os.system('sleep 1')
 
 for i in range(1, num_clients + 1):

@@ -70,7 +70,7 @@ class vr(SystemUnderTest):
 
 	def workload_dir(self, context):
 		#these are not used in vr
-		return '/mnt/' + context.medium + '/'
+		return '/mydata/mnt/' + context.medium + '/'
 
 	def load_dir(self, context):
 		#these are not used in vr
@@ -113,7 +113,7 @@ class vr(SystemUnderTest):
 		batch_size = context.batch
 		#if context.num_clients > 64:
                         #batch_size = context.num_clients 
-		command = '''{0}/bench/replica -c {1} -b {2} -i {3} -m vr >/tmp/vrlog 2>&1 & '''.format(context.system_home_dir, context.remote_perf_dir + '/' + cfg_filename, batch_size, int(i)-1)			
+		command = '''{0}/bench/replica -c {1} -b {2} -i {3} -m vr >/mydata/tmp/vrlog 2>&1 & '''.format(context.system_home_dir, context.remote_perf_dir + '/' + cfg_filename, batch_size, int(i)-1)			
 		remote_command += command 
 		return remote_command
 
@@ -121,7 +121,7 @@ class vr(SystemUnderTest):
 		remote_cfg_file = '{0}/vrconfig'.format(context.remote_perf_dir)
 
 		cmd = "killall -s 9 replica >/dev/null 2>&1; killall -s 9 replica >/dev/null 2>&1;"
-		cmd += 'rm -rf /tmp/vrlog;'
+		cmd += 'rm -rf /mydata/tmp/vrlog;'
 		
 		cmd += 'sleep 1;'
 		cmd += "killall -s 9 replica >/dev/null 2>&1; killall -s 9 replica >/dev/null 2>&1;"
